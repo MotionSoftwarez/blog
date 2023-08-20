@@ -42,7 +42,7 @@ gravatar = Gravatar(app,
                     base_url=None)
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', 'sqlite:///posts.db')
 db = SQLAlchemy()
 db.init_app(app)
 
@@ -283,4 +283,4 @@ def send_email(name, email, phone, message):
 
 
 if __name__ == "__main__":
-    app.run(debug=False, port=5001)
+    app.run(debug=False)
